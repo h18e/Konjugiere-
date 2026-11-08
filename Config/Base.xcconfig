@@ -1,0 +1,6 @@
+// Gemeinsame Einstellungen. Persönliche Werte (Team, Bundle-ID) gehören in Local.xcconfig,
+// die nicht in Git landet. Vorlage: Local.xcconfig.example
+KONJUGIERE_BUNDLE_ID = ch.raphaelhess.konjugiere
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

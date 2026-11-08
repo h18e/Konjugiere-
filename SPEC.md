@@ -36,7 +36,7 @@ Das vollständige Schema steht in `data/pipeline/build.py`, hier in Worten (Stan
 - **meta**: Schemaversion und Build-Datum
 - **language**: code (fr/it/en), name, source, license, attribution
 - **tense**: lang, code, mood, name_native («Passé composé»), name_de («Perfekt»), sort, level (1–3), rare (anfangs zugeklappt), personal
-- **verb**: id, lang, infinitive, infinitive_norm, verb_group, auxiliary (avoir/être/both bzw. avere/essere/both), model («wird konjugiert wie …», nur FR), reflexive_of, freq_rank, gloss_de, note (EN: Unterscheidung gleich geschriebener Verben, z. B. lie/lie), has_irregular, source
+- **verb**: id, lang, verb_key (stabil über Neuaufbauten; meist der Infinitiv, bei englischen Doppelgängern «lie~lay~lain»), infinitive, infinitive_norm, verb_group, auxiliary (avoir/être/both bzw. avere/essere/both), model («wird konjugiert wie …», nur FR), reflexive_of, freq_rank, gloss_de, note (EN: Unterscheidung gleich geschriebener Verben, z. B. lie/lie), has_irregular, source
 - **verb_table**: pro Verb die ganze Konjugation als JSON, komprimiert mit DEFLATE (roh, RFC 1951, in Swift mit `NSData.decompressed(using: .zlib)` lesbar):
   `{"present": [[person, gender, pronoun, form, [alternativen], irregulär], …], …}`
   - person: 1s 2s 3s 1p 2p 3p · bei Partizipien sg/pl · bei den englischen Stammformen base/past/pp · sonst leer

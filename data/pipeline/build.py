@@ -24,7 +24,7 @@ BUILD = DATA / "build"
 DB_PATH = BUILD / "konjugiere.sqlite"
 CORRECTIONS = DATA / "corrections" / "corrections.tsv"
 GLOSS_CORRECTIONS = DATA / "corrections" / "glosses.tsv"
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 LANGUAGES = {
     "fr": ("Französisch", "Verbiste 0.1.49 (Pierre Sarrazin); Bedeutungen: deutsches Wiktionary",
@@ -178,11 +178,14 @@ CREATE TABLE language (code TEXT PRIMARY KEY, name TEXT NOT NULL, source TEXT NO
 CREATE TABLE tense (lang TEXT NOT NULL, code TEXT NOT NULL, mood TEXT NOT NULL, name_native TEXT NOT NULL,
                     name_de TEXT NOT NULL, sort INTEGER NOT NULL, level INTEGER NOT NULL,
                     rare INTEGER NOT NULL, personal INTEGER NOT NULL, PRIMARY KEY (lang, code));
-CREATE TABLE verb (id INTEGER PRIMARY KEY, lang TEXT NOT NULL, infinitive TEXT NOT NULL,
+-- verb_key: bleibt über Neuaufbauten gleich (Lernfortschritt hängt daran). Meist der Infinitiv,
+-- bei gleich geschriebenen englischen Verben mit Stammformen: «lie~lay~lain», «lie~lied~lied».
+CREATE TABLE verb (id INTEGER PRIMARY KEY, lang TEXT NOT NULL, verb_key TEXT NOT NULL, infinitive TEXT NOT NULL,
                    infinitive_norm TEXT NOT NULL, verb_group TEXT, auxiliary TEXT, model TEXT,
                    reflexive_of TEXT, freq_rank INTEGER, gloss_de TEXT NOT NULL, note TEXT,
                    has_irregular INTEGER NOT NULL, source TEXT NOT NULL);
 CREATE INDEX verb_lang_inf ON verb (lang, infinitive_norm);
+CREATE UNIQUE INDEX verb_lang_key ON verb (lang, verb_key);
 CREATE INDEX verb_lang_model ON verb (lang, model);
 CREATE INDEX verb_lang_rank ON verb (lang, freq_rank);
 -- data: JSON, komprimiert mit DEFLATE (roh, RFC 1951)
@@ -317,8 +320,12 @@ def build() -> dict:
         for e in items:
             v = e.verb
             has_irr = any(f.irregular for rows in v.tenses.values() for f in rows)
-            db.execute("INSERT INTO verb VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                       (next_id, lang, v.infinitive, normalize(v.infinitive), v.group, v.auxiliary,
+            key = v.infinitive
+            if len(by_key[(lang, v.infinitive)]) > 1:
+                parts = {f.person: f.form for f in v.tenses.get("principal_parts", [])}
+                key = f"{v.infinitive}~{parts.get('past', next_id)}~{parts.get('pp', '')}"
+            db.execute("INSERT INTO verb VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                       (next_id, lang, key, v.infinitive, normalize(v.infinitive), v.group, v.auxiliary,
                         v.model if lang == "fr" else None, v.reflexive_of, e.rank, e.gloss,
                         v.model if lang == "en" else None, int(has_irr), v.source))
             db.execute("INSERT INTO verb_table VALUES (?, ?)", (next_id, deflate(table_json(v, order))))

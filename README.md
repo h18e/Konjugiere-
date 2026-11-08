@@ -8,7 +8,8 @@ Was die App können soll, steht in [SPEC.md](SPEC.md). Wie gut die Daten sind, z
 
 ## Stand
 - ✅ Datenaufbereitung: Französisch, Italienisch und Englisch, mit deutschen Bedeutungen, Häufigkeiten und Lernpaketen
-- ⏳ iOS-App: noch nicht begonnen
+- ✅ iOS-App V1: Nachschlagen (Suche, Tabelle, Verbinfos, Fehler melden), Üben (Eintippen, Auswahl, Tabelle, Leitner, Pakete, Meine Verben, Heute fällig), Einstellungen (Profile, Zeitformen, Export der Fehlermeldungen)
+- ⏳ Noch offen: App-Icon, Test auf echten Geräten, RELEASE.md und PRIVACY.md vor TestFlight
 
 ## Aufbau
 
@@ -16,6 +17,15 @@ Was die App können soll, steht in [SPEC.md](SPEC.md). Wie gut die Daten sind, z
 Konjugiere!/
 ├── SPEC.md                  Spezifikation (Ergebnis der Planungsrunden)
 ├── SETUP.md                 Ersteinrichtung Schritt für Schritt
+├── Konjugiere.xcodeproj     Xcode-Projekt (öffnen mit Doppelklick)
+├── Config/
+│   ├── Base.xcconfig        gemeinsame Einstellungen (Bundle-ID)
+│   └── Local.xcconfig       deine Team-ID (nicht in Git, Vorlage: Local.xcconfig.example)
+├── Konjugiere/              App-Code (SwiftUI)
+│   ├── Data/                Zugriff auf die Verbdatenbank (SQLite, nur lesen)
+│   ├── Learning/            Lernlogik: Prüfen, Leitner, Runden, SwiftData-Modelle
+│   └── Views/               Oberfläche: Nachschlagen, Üben, Einstellungen
+├── KonjugiereTests/         Tests (Swift Testing, ⌘U)
 ├── docs/
 │   ├── DATENQUALITAET.md    automatisch erzeugter Qualitätsbericht
 │   └── HANDOFF.md           Übergabe aus dem ersten Chat

@@ -1,0 +1,6 @@
+// Kopie dieser Datei als Local.xcconfig speichern und ausfüllen.
+// Die Team-ID findest du in Xcode → Settings… (⌘,) → Accounts → dein Team, oder auf
+// developer.apple.com → Account → Membership details.
+DEVELOPMENT_TEAM = ABCDE12345
+// Optional, falls die Bundle-ID schon vergeben ist:
+// KONJUGIERE_BUNDLE_ID = ch.deinname.konjugiere

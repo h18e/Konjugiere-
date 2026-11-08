@@ -2,7 +2,7 @@
 
 Automatisch erzeugt von `python3 -m pipeline.build` am 2026-11-08.
 
-Datenbank: `data/build/konjugiere.sqlite`, **38.1 MB**. Angewendete Korrekturen: 0.
+Datenbank: `data/build/konjugiere.sqlite`, **38.8 MB**. Angewendete Korrekturen: 0.
 
 ## Überblick
 

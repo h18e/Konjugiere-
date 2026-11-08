@@ -15,3 +15,7 @@ data/build/
 xcuserdata/
 DerivedData/
 *.xcuserstate
+
+# Persönliche Xcode-Einstellungen (Team-ID)
+Config/Local.xcconfig
+/build/
