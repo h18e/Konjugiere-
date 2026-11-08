@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Rohdaten und Zwischenstände (werden vom Skript heruntergeladen bzw. erzeugt)
+data/raw/
+data/build/
+
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcuserstate
