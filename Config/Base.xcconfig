@@ -3,4 +3,8 @@
 KONJUGIERE_BUNDLE_ID = ch.raphaelhess.konjugiere
 DEVELOPMENT_TEAM =
 
+// Keine eigene Verschlüsselung (keine Netzwerkverbindung, nur lokale Daten).
+// Erspart die Frage «Missing Compliance» in App Store Connect bei jedem Build.
+INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO
+
 #include? "Local.xcconfig"

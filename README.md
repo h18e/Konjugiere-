@@ -9,7 +9,7 @@ Was die App können soll, steht in [SPEC.md](SPEC.md). Wie gut die Daten sind, z
 ## Stand
 - ✅ Datenaufbereitung: Französisch, Italienisch und Englisch, mit deutschen Bedeutungen, Häufigkeiten und Lernpaketen
 - ✅ iOS-App V1: Nachschlagen (Suche, Tabelle, Verbinfos, Fehler melden), Üben (Eintippen, Auswahl, Tabelle, Leitner, Pakete, Meine Verben, Heute fällig), Einstellungen (Profile, Zeitformen, Export der Fehlermeldungen)
-- ⏳ Noch offen: Test auf echten Geräten, RELEASE.md und PRIVACY.md vor TestFlight
+- ⏳ Noch offen: Test auf echten Geräten, TestFlight-Tester einladen, PRIVACY.md vor dem App Store (siehe RELEASE.md)
 
 ## Aufbau
 
