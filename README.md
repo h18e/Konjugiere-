@@ -2,6 +2,8 @@
 
 Nachschlagewerk und Lernhilfe für Verbkonjugationen auf Französisch, Italienisch und Englisch, als iOS-App für iPhone und iPad.
 
+Repository: https://github.com/h18e/Konjugiere-
+
 Was die App können soll, steht in [SPEC.md](SPEC.md). Wie gut die Daten sind, zeigt [docs/DATENQUALITAET.md](docs/DATENQUALITAET.md). Diese Datei wird bei jedem Build neu erzeugt.
 
 ## Stand
